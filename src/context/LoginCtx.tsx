@@ -5,7 +5,7 @@ const LoginCtx = createContext<any>(null!);
 const LoginProvider = ({ children }: any) => {
   let [owner, setOwner] = useState<any>(null);
 
-  let value = { owner };
+  let value = { owner, setOwner };
 
   return <LoginCtx.Provider value={value}>{children}</LoginCtx.Provider>;
 };

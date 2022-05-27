@@ -1,7 +1,20 @@
+import { useEffect } from "react";
+import useLogin from "../hooks/useLogin";
+import { GLog } from "./GLog";
+
 export const Login = () => {
+  useEffect(() => {
+    if (window.localStorage.getItem("owner")) {
+      window.location.href = "/hello";
+    }
+  }, []);
+  const { owner, setOwner } = useLogin();
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="m-auto rounded-md bg-indigo-100 text-lg font-semibold p-4 px-8">
+      Login to your account
+      <div>
+        <GLog />
+      </div>
     </div>
   );
 };

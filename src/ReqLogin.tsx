@@ -3,7 +3,7 @@ import useLogin from "./hooks/useLogin";
 
 const ReqLogin = () => {
   const loc = useLocation();
-  if (!useLogin().user) {
+  if (!window.localStorage.getItem("owner")) {
     return <Navigate to="/login" state={{ from: loc }} replace />;
   }
   return <Outlet />;
