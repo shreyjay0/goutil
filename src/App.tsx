@@ -26,6 +26,7 @@ function App() {
               <Route path="/orders" element={<Orders />} />
               <Route path="/add" element={<Add />} />
               <Route path="/edit/:id" element={<Edit />} />
+              <Route path="hello" element={<Home />} />
               <Route path="/logout" element={<Logout />} />
             </Route>
             <Route path="*" element={<Error />} />

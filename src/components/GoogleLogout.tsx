@@ -1,14 +1,25 @@
 import { useState } from "react";
+import { useScript } from "../hooks/useScript";
 
 type GoogleLogoutProps = {
   className?: string;
   ref?: any;
 };
+
+declare const window: Window &
+  typeof globalThis & {
+    google: any;
+  };
+
 export const GoogleLogout = ({ className }: GoogleLogoutProps) => {
   const [loadingLogout, setLoadingLogout] = useState(false);
+  useScript("https://accounts.google.com/gsi/client", () => {});
+
   const handleLogout = () => {
     setLoadingLogout(true);
     window.localStorage.removeItem("owner");
+    window.google.accounts.id.disableAutoSelect();
+    setLoadingLogout(false);
     window.location.href = "/";
   };
 

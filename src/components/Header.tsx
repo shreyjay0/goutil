@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { getUserDetail } from "../helper/getUserDetail";
 import logo from "../img/logo.svg";
+import { AccountCard } from "./AccountCard";
 
 export const Header = () => {
+  const owner_data = getUserDetail();
+  const [profOn, setProfOn] = useState(false);
+
   return (
     <div className="flex items-center justify-between flex-wrap bg-hdr-1 px-2">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -34,6 +40,37 @@ export const Header = () => {
               </span>
             </Link>
           </li>
+          {owner_data.id && (
+            <li className="list-none mx-2">
+              <div
+                onMouseOver={() => {
+                  setProfOn(true);
+                }}
+                onMouseOut={() => {
+                  setProfOn(false);
+                }}
+                className="mx-2 hover:cursor-pointer h-8 w-8 rounded-full flex flex-col"
+              >
+                <input
+                  type="image"
+                  className="profile h-8 w-8 opacity-70 rounded-full"
+                  src={owner_data?.photo}
+                  alt="account"
+                />
+                {profOn && (
+                  <AccountCard
+                    className="absolute mt-8 right-[1.5em] z-10 hover:cursor-default"
+                    onMouseOver={() => {
+                      setProfOn(true);
+                    }}
+                    onMouseOut={() => {
+                      setProfOn(false);
+                    }}
+                  />
+                )}
+              </div>
+            </li>
+          )}
         </nav>
       </div>
     </div>

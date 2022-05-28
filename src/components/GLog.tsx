@@ -2,11 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useScript } from "../hooks/useScript";
 import { GoogleLogin } from "./GoogleLogin";
 import jwtDecode from "jwt-decode";
-import { GoogleLogout } from "./GoogleLogout";
-
-type GlogProps = {
-  onGoogleSignIn: Function;
-};
 
 declare const window: Window &
   typeof globalThis & {
@@ -27,12 +22,15 @@ const resFormatted = (res: any) => {
 };
 
 export const GLog = ({
+  setOwner,
+  owner,
   onGoogleSignIn = (res: any) => {
     resFormatted(res);
     window.localStorage.setItem("owner", JSON.stringify(resFormatted(res)));
+    setOwner(resFormatted(res));
     window.location.href = "/hello";
   },
-}) => {
+}: any) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const loginBtn = useRef<HTMLButtonElement>(null);
   const checkLogin = () => {
@@ -60,12 +58,14 @@ export const GLog = ({
       width: "240",
       height: "50",
     });
-    window.google.accounts.id.prompt();
+    if (!checkLogin()) {
+      window.google.accounts.id.prompt();
+    }
   });
 
   return (
     <>
-      <GoogleLogin className="w-[240px] h-[50px]" />{" "}
+      <GoogleLogin className="w-[240px] h-[50px] disabled" />{" "}
       <button
         className="rounded-full opacity-0 z-10 absolute mt-[-2.8em] ml-[-6.7em]"
         ref={loginBtn}

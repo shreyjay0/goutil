@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
+import { getUserDetail } from "../helper/getUserDetail";
+import useLogin from "../hooks/useLogin";
 
 export const Home = () => {
+  const owner_data = getUserDetail();
+  const { owner } = useLogin();
+  console.log(owner);
   return (
-    <div className="m-auto min-h-screen flex justify-center">
-      <div className="w-full p-[10%]">
-        <div className="text-2xl font-semibold p-3 text-left rounded-md bg-slate-400">
-          Hello {window.localStorage.getItem("username")},
+    <div className="m-auto w-full min-h-screen flex justify-center">
+      <div className="p-[10%] w-full pt-[4%]">
+        <div className="text-2xl font-semibold p-3 text-left mb-[6%]">
+          Hello{" "}
+          <span className="capitalize text-blue-800">{owner_data?.name}!</span>
         </div>
-        {/* <div className="text-lg font-light">
-          You are logged in as {window.localStorage.getItem("role")}
-        </div> */}
-        <div className="w-[18em] bg-slate-200 mt-6 rounded-md min-h-min p-3">
+        <div className="w-[18em] bg-slate-200 mt-6 rounded-md min-h-min p-3 m-auto">
           <div className="font-semibold"> Manage your orders here</div>
           <div className="mt-4 mb-2">
             <Link

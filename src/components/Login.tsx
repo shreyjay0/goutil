@@ -13,7 +13,7 @@ export const Login = () => {
     <div className="m-auto rounded-md bg-indigo-100 text-lg font-semibold p-4 px-8">
       Login to your account
       <div>
-        <GLog />
+        <GLog setOwner={setOwner} owner={owner} />
       </div>
     </div>
   );

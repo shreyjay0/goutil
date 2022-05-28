@@ -6,7 +6,11 @@ export const Landing = () => {
     <div className="text-lg h-[100vh] w-full flex justify-center">
       <div className="mx-auto my-6 flex flex-col">
         <div>
-          <img src={bg1} alt="bg1" className="max-h-[40vh] m-auto" />
+          <img
+            src={bg1}
+            alt="bg1"
+            className="max-h-[40vh] m-auto animate-fbg-rot"
+          />
         </div>
         <div>
           <div className="text-4xl font-semibold w-2/3 m-auto">

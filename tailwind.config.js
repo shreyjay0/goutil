@@ -18,6 +18,19 @@ module.exports = {
         "proxima-nova": ["Proxima Nova", "sans-serif"],
         "lovers-quarrel": ["Lovers Quarrel", "cursive"],
       },
+      animation: {
+        "fbg-rot": "fbg-rot 80s linear infinite both",
+      },
+      keyframes: {
+        "fbg-rot": {
+          "0%": {
+            transform: "rotate(0)",
+          },
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+      },
     },
   },
   plugins: [],
